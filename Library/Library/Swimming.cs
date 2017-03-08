@@ -30,7 +30,7 @@ namespace Library
                 _distance = distance;
                 _style = style;
             }
-            catch (FormatException)
+            catch (ArithmeticException)
             {
                 Console.WriteLine($"Error. You entered is not a number");
             }
@@ -43,7 +43,7 @@ namespace Library
         /// результат возвращается в виде значения типа double 
         /// </returns>
         /// </summary>
-        public double GetResult()
+        public double GetKkal()
         {
             var result = _distance * _style * 1.2;
             return result;

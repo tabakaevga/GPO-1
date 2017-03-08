@@ -9,7 +9,7 @@ namespace Output
     ///  основной класс программы
     ///  реализующий ввод и вывод обработанных данных пользователя
     /// </remarks>
-    class MainClass
+    internal class MainClass
     {
         /// <summary>
         /// Метод Main() является
@@ -27,35 +27,33 @@ namespace Output
                 try
                 {
                     var choiceSport = int.Parse(Console.ReadLine());
-
                     if (choiceSport < 1 || choiceSport > 3)
                     {
                         Console.WriteLine("Error. Сhoose 1-3");
                         continue;
                     }
+
+                    double distance;
+                    double style;
                     switch (choiceSport)
                     {
                         case 1:
                         {
-                                double distance;
-                                double style;
                                 Running(out distance, out style);
                                 IPractice sport = new Running(distance, style);
                                 Console.Clear();
                                 Console.WriteLine("Kkal = ");
-                                Console.Write(sport.GetResult());
+                                Console.Write(sport.GetKkal());
                                 Console.ReadKey();
                                 break;
                             }
                         case 2:
                             {
-                                double distance;
-                                double style;
                                 Swimming(out distance, out style);
                                 IPractice sport = new Swimming(distance, style);
                                 Console.Clear();
                                 Console.WriteLine("Kkal = ");
-                                Console.Write(sport.GetResult());
+                                Console.Write(sport.GetKkal());
                                 Console.ReadKey();
                                 break;
                             }
@@ -68,7 +66,7 @@ namespace Output
                                 IPractice sport = new Press(weight, repetitions, sets);
                                 Console.Clear();
                                 Console.WriteLine("Kkal = ");
-                                Console.Write(sport.GetResult());
+                                Console.Write(sport.GetKkal());
                                 Console.ReadKey();
                                 break;
                             }
@@ -291,7 +289,5 @@ namespace Output
                 break;
             }
         }
-
-
     }
 }

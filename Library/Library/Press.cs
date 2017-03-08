@@ -28,7 +28,7 @@ namespace Library
                 _repetitions = repetitions;
                 _sets = sets;
             }
-            catch (FormatException)
+            catch (ArithmeticException)
             {
                 Console.WriteLine("Error. You entered is not a number");
             }
@@ -40,7 +40,7 @@ namespace Library
         /// результат возвращается в виде значения типа double 
         /// </returns>
         /// </summary>
-        public double GetResult()
+        public double GetKkal()
         {
             var result = ((_weight * _repetitions) * 0.2) * _sets;
             return result;
