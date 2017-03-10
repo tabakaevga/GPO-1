@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Library
 {
@@ -24,15 +20,8 @@ namespace Library
         /// <param name="style"> интенсивность бега </param>
         public Running(double distance, double style)
         {
-            try
-            {
-                _distance = distance;
-                _style = style;
-            }
-            catch (ArithmeticException)
-            {
-                Console.WriteLine($"Error. You entered is not a number");
-            }
+            _distance = distance;
+            _style = style;
         }
 
         /// <summary>

@@ -22,16 +22,9 @@ namespace Library
         /// <param name="sets"> количество подходов </param>
         public Press(double weight, int repetitions, int sets)
         {
-            try
-            {
-                _weight = weight;
-                _repetitions = repetitions;
-                _sets = sets;
-            }
-            catch (ArithmeticException)
-            {
-                Console.WriteLine("Error. You entered is not a number");
-            }
+            _weight = weight;
+            _repetitions = repetitions;
+            _sets = sets;
         }
 
         /// <summary>

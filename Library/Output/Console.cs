@@ -21,31 +21,32 @@ namespace Output
             Console.WriteLine("1 - Running");
             Console.WriteLine("2 - Swimming");
             Console.WriteLine("3 - Press");
-
-            while (true) 
+            while (true)
             {
-                try
+                int enterNumb;
+                if (CheckEnterData(1, 3, out enterNumb))
                 {
-                    var choiceSport = int.Parse(Console.ReadLine());
-                    if (choiceSport < 1 || choiceSport > 3)
-                    {
-                        Console.WriteLine("Error. Сhoose 1-3");
-                        continue;
-                    }
+                    Console.WriteLine("Error");
+                }
 
-                    double distance;
-                    double style;
-                    switch (choiceSport)
+                if (CheckNaNAndInfinity(enterNumb))
+                {
+                    return;
+                }
+
+                double distance;
+                double style;
+                switch (enterNumb)
                     {
                         case 1:
-                        {
+                            {
                                 Running(out distance, out style);
                                 IPractice sport = new Running(distance, style);
                                 Console.Clear();
                                 Console.WriteLine("Kkal = ");
                                 Console.Write(sport.GetKkal());
                                 Console.ReadKey();
-                                break;
+                                return;
                             }
                         case 2:
                             {
@@ -55,7 +56,7 @@ namespace Output
                                 Console.WriteLine("Kkal = ");
                                 Console.Write(sport.GetKkal());
                                 Console.ReadKey();
-                                break;
+                                return;
                             }
                         case 3:
                             {
@@ -68,21 +69,14 @@ namespace Output
                                 Console.WriteLine("Kkal = ");
                                 Console.Write(sport.GetKkal());
                                 Console.ReadKey();
-                                break;
+                                return;
                             }
                         default:
                             Console.WriteLine("Error");
-                            break;
+                            return;
                     }
                 }
-                catch (FormatException)
-                {
-                    Console.WriteLine("You entered is not a number. Сhoose 1-3");
-                    continue;
-                }
-                break;
             }
-        }
 
         /// <summary>
         /// метод реализует ввод и проверку данных пользователя,
@@ -95,59 +89,42 @@ namespace Output
             style = 0;
             Console.WriteLine("Enter your data");
             Console.WriteLine("Distance(meters) - ");
-            while (true)
+            if (CheckEnterData(1, 100000, out distance));
+
+            if (CheckNaNAndInfinity(distance))
             {
-                try
-                {
-                    distance = double.Parse(Console.ReadLine());
-                    if (distance < 1)
-                    {
-                        Console.WriteLine("Error. Distance < 1 Try again");
-                        continue;
-                    }
-                }
-                catch (FormatException)
-                {
-                    Console.WriteLine("You entered is not a number. Enter number > 0");
-                    continue;
-                }
-                break;
+                return;
             }
 
             Console.WriteLine("Intensity: 1 - low; 2 - medium; 3 - high ");
-            while (true)
+            int checkStyle;
+            if (CheckEnterData(1, 3, out checkStyle));
+
+            if (CheckNaNAndInfinity(checkStyle))
             {
-                int choiceStyle;
-                try
+                return;
+            }
+
+            switch (checkStyle)
+            {
+                case 1:
                 {
-                    choiceStyle = int.Parse(Console.ReadLine());
-                    if (choiceStyle < 1 || choiceStyle > 3)
-                    {
-                        Console.WriteLine("Error. Choose 1-3");
-                        continue;
-                    }
+                    style = 0.3;
+                    break;
                 }
-                catch (FormatException)
+                case 2:
                 {
-                    Console.WriteLine("You entered is not a number. Enter number > 0");
-                    continue;
+                    style = 0.5;
+                    break;
                 }
-                switch (choiceStyle)
+                case 3:
                 {
-                    case 1:
-                        style = 0.3;
-                        break;
-                    case 2:
-                        style = 0.5;
-                        break;
-                    case 3:
-                        style = 0.8;
-                        break;
-                    default:
-                        Console.WriteLine("Error");
-                        break;
+                    style = 0.8;
+                    break;
                 }
-                break;
+                default:
+                    Console.WriteLine("Error in enter style");
+                    break;
             }
         }
 
@@ -162,59 +139,43 @@ namespace Output
             style = 0;
             Console.WriteLine("Enter your data");
             Console.WriteLine("Distance(meters) - ");
-            while (true)
+
+            if (CheckEnterData(1, 100000, out distance));
+
+            if (CheckNaNAndInfinity(distance))
             {
-                try
-                {
-                    distance = double.Parse(Console.ReadLine());
-                    if (distance < 1)
-                    {
-                        Console.WriteLine("Error. Distance < 1 Try again");
-                        continue;
-                    }
-                }
-                catch (FormatException)
-                {
-                    Console.WriteLine("You entered is not a number. Enter number > 0");
-                    continue;
-                }
-                break;
+                return;
             }
 
             Console.WriteLine("Style: 1 - free; 2 - сrawl; 3 - butterfly ");
-            while (true)
+            int checkStyle;
+            if (CheckEnterData(1, 3, out checkStyle));
+
+            if (CheckNaNAndInfinity(checkStyle))
             {
-                int choiceStyle;
-                try
-                {
-                    choiceStyle = int.Parse(Console.ReadLine());
-                    if (choiceStyle < 1 || choiceStyle > 3)
+                return;
+            }
+
+            switch (checkStyle)
+            {
+                case 1:
                     {
-                        Console.WriteLine("Error. Сhoose 1-3");
-                        continue;
-                    }
-                }
-                catch (FormatException)
-                {
-                    Console.WriteLine("You entered is not a number. Enter number > 0");
-                    continue;
-                }
-                switch (choiceStyle)
-                {
-                    case 1:
                         style = 1;
                         break;
-                    case 2:
-                        style = 1.6;
+                    }
+                case 2:
+                    {
+                        style = 1.5;
                         break;
-                    case 3:
+                    }
+                case 3:
+                    {
                         style = 1.8;
                         break;
-                    default:
-                        Console.WriteLine("Error");
-                        break;
-                }
-                break;
+                    }
+                default:
+                    Console.WriteLine("Error in enter style");
+                    break;
             }
         }
 
@@ -230,64 +191,97 @@ namespace Output
             Console.WriteLine("Enter your data");
 
             Console.WriteLine("Weight(kilogram) - ");
-            while (true)
+            if (CheckEnterData(1, 500, out weight));
+
+            if (CheckNaNAndInfinity(weight))
             {
-                try
-                {
-                    weight = double.Parse(Console.ReadLine());
-                    if (weight < 1)
-                    {
-                        Console.WriteLine("Error. Weight < 1. Try again");
-                        continue;
-                    }
-                }
-                catch (FormatException)
-                {
-                    Console.WriteLine("You entered is not a number. Enter number > 0");
-                    continue;
-                }
-                break;
+                repetitions = 0;
+                sets = 0;
+                return;
             }
+
 
             Console.WriteLine("Number of repetitions - ");
-            while (true)
+            if (CheckEnterData(1, 100, out repetitions));
+
+            if (CheckNaNAndInfinity(repetitions))
             {
-                try
-                {
-                    repetitions = int.Parse(Console.ReadLine());
-                    if (repetitions < 1)
-                    {
-                        Console.WriteLine("Error. Repetitions < 1. Try again");
-                        continue;
-                    }
-                }
-                catch (FormatException)
-                {
-                    Console.WriteLine("You entered is not a number. Enter number > 0");
-                    continue;
-                }
-                break;
+                sets = 0;
+                return;
             }
 
+
             Console.WriteLine("Number of sets - ");
+            if (CheckEnterData(1, 20, out sets));
+
+            if (CheckNaNAndInfinity(sets))
+            {
+                return;
+            }
+        }
+
+        /// <summary>
+        /// метод осуществляет проверку на ввод данных пользователя
+        /// и принадлежности заданному диапазону
+        /// </summary>
+        /// <typeparam name="T"> универсальный параметр </typeparam>
+        /// <param name="min"> минимально число диапазона </param>
+        /// <param name="max"> максимальное число диапазона </param>
+        /// <param name="enterNum"> вводимое пользователем число</param>
+        /// <returns> возвращает false, если вводимое число, принадлежит заданному диапазону </returns>
+        private static bool CheckEnterData<T>(int min, int max, out T enterNum)
+        {
             while (true)
             {
                 try
                 {
-                    sets = int.Parse(Console.ReadLine());
-                    if (sets < 1)
+                    enterNum = ChangeType<T>(Console.ReadLine());
+                    int enterNumToInt = ChangeType<int>(enterNum); // для проверки принадлежности диапазону (т.к min и max - Int)
+                    if (enterNumToInt < min || enterNumToInt > max)
                     {
-                        Console.WriteLine("Error. Sets < 1. Try again");
+                        Console.WriteLine("Error. Сhoose correct number");
                         continue;
                     }
+                    Console.Clear();
+                    return false;
                 }
                 catch (FormatException)
                 {
-                    Console.WriteLine("You entered is not a number. Enter number > 0");
+                    Console.WriteLine("You entered is not a number");
                     continue;
                 }
-                break;
+                catch (OverflowException)
+                {
+                    Console.WriteLine("Error. Сhoose correct number");
+                    continue;
+                }
             }
+        }
+
+        /// <summary>
+        /// метод осуществляет конвертирование из искомого типа данных в заданный
+        /// </summary>
+        /// <typeparam name="T"> универсальный параметр </typeparam>
+        /// <param name="obj"> конвертируемая переменная </param>
+        /// <returns> возвращает сковертированную переменную </returns>
+        public static T ChangeType<T>(object obj)
+        {
+            return (T)Convert.ChangeType(obj, typeof(T));
+        }
+
+        /// <summary>
+        /// метод осуществляет проверку на присвоение переменной значений типа NaN или Infinity
+        /// </summary>
+        /// <param name="checkNumb"> проверяемая переменная </param>
+        /// <returns> возвращает true, если условие выполнилось </returns>
+        public static bool CheckNaNAndInfinity(double checkNumb)
+        {
+            if (double.IsNaN(checkNumb) || double.IsInfinity(checkNumb))
+            {
+                Console.WriteLine("You entered is not a number");
+                return true;
+            }
+            return false;
         }
     }
 }

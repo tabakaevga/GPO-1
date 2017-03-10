@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Library
 {
@@ -25,15 +20,8 @@ namespace Library
         /// <param name="style"> стиль плавания </param>
         public Swimming(double distance, double style)
         {
-            try
-            {
-                _distance = distance;
-                _style = style;
-            }
-            catch (ArithmeticException)
-            {
-                Console.WriteLine($"Error. You entered is not a number");
-            }
+            _distance = distance;
+            _style = style;
         }
 
 
