@@ -29,10 +29,7 @@ namespace Output
                     Console.WriteLine("Error");
                 }
 
-                if (CheckNaNAndInfinity(enterNumb))
-                {
-                    return;
-                }
+                CheckNaNAndInfinity(enterNumb);
 
                 double distance;
                 double style;
@@ -91,19 +88,13 @@ namespace Output
             Console.WriteLine("Distance(meters) - ");
             if (CheckEnterData(1, 100000, out distance));
 
-            if (CheckNaNAndInfinity(distance))
-            {
-                return;
-            }
+            CheckNaNAndInfinity(distance);
 
             Console.WriteLine("Intensity: 1 - low; 2 - medium; 3 - high ");
             int checkStyle;
             if (CheckEnterData(1, 3, out checkStyle));
 
-            if (CheckNaNAndInfinity(checkStyle))
-            {
-                return;
-            }
+            CheckNaNAndInfinity(checkStyle);
 
             switch (checkStyle)
             {
@@ -142,19 +133,13 @@ namespace Output
 
             if (CheckEnterData(1, 100000, out distance));
 
-            if (CheckNaNAndInfinity(distance))
-            {
-                return;
-            }
+            CheckNaNAndInfinity(distance);
 
             Console.WriteLine("Style: 1 - free; 2 - сrawl; 3 - butterfly ");
             int checkStyle;
             if (CheckEnterData(1, 3, out checkStyle));
 
-            if (CheckNaNAndInfinity(checkStyle))
-            {
-                return;
-            }
+            CheckNaNAndInfinity(checkStyle);
 
             switch (checkStyle)
             {
@@ -193,31 +178,17 @@ namespace Output
             Console.WriteLine("Weight(kilogram) - ");
             if (CheckEnterData(1, 500, out weight));
 
-            if (CheckNaNAndInfinity(weight))
-            {
-                repetitions = 0;
-                sets = 0;
-                return;
-            }
-
+            CheckNaNAndInfinity(weight);
 
             Console.WriteLine("Number of repetitions - ");
             if (CheckEnterData(1, 100, out repetitions));
 
-            if (CheckNaNAndInfinity(repetitions))
-            {
-                sets = 0;
-                return;
-            }
-
+            CheckNaNAndInfinity(repetitions);
 
             Console.WriteLine("Number of sets - ");
             if (CheckEnterData(1, 20, out sets));
 
-            if (CheckNaNAndInfinity(sets))
-            {
-                return;
-            }
+            CheckNaNAndInfinity(sets);
         }
 
         /// <summary>
@@ -273,15 +244,13 @@ namespace Output
         /// метод осуществляет проверку на присвоение переменной значений типа NaN или Infinity
         /// </summary>
         /// <param name="checkNumb"> проверяемая переменная </param>
-        /// <returns> возвращает true, если условие выполнилось </returns>
-        public static bool CheckNaNAndInfinity(double checkNumb)
+        public static void CheckNaNAndInfinity(double checkNumb)
         {
             if (double.IsNaN(checkNumb) || double.IsInfinity(checkNumb))
             {
-                Console.WriteLine("You entered is not a number");
-                return true;
+                throw new InvalidOperationException("Error. NaN or Infinity");
             }
-            return false;
+            return;
         }
     }
 }
