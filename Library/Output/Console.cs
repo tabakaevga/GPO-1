@@ -3,7 +3,8 @@ using  Library;
 
 namespace Output
 {
-
+    //TODO: Не стоит писать название класса/интерфейса/метода в комментариях, 
+    //TODO: поменяете название класса, а в комментарии забудете и будет рассогласование
     /// <remarks>
     ///  Класс MainClass
     ///  основной класс программы
@@ -11,6 +12,8 @@ namespace Output
     /// </remarks>
     internal class MainClass
     {
+        //TODO: Не стоит писать название класса/интерфейса/метода в комментариях, 
+        //TODO: поменяете название класса, а в комментарии забудете и будет рассогласование
         /// <summary>
         /// Метод Main() является
         /// входной точкой работы программы
@@ -40,7 +43,8 @@ namespace Output
                                 Running(out distance, out style);
                                 IPractice sport = new Running(distance, style);
                                 Console.Clear();
-                                Console.WriteLine("Kkal = ");
+                            //TODO: Красивее будет выглядеть Console.WriteLine("Kkal = " + sport.GetKkal())
+                            Console.WriteLine("Kkal = ");
                                 Console.Write(sport.GetKkal());
                                 Console.ReadKey();
                                 return;
@@ -75,6 +79,9 @@ namespace Output
                 }
             }
 
+        //TODO: Не стоит писать название класса/интерфейса/метода в комментариях, 
+        //TODO: поменяете название класса, а в комментарии забудете и будет рассогласование
+        //TODO: Название метода не отражает его назначения
         /// <summary>
         /// метод реализует ввод и проверку данных пользователя,
         /// если был выбран вид спорта как "Running"
@@ -86,12 +93,14 @@ namespace Output
             style = 0;
             Console.WriteLine("Enter your data");
             Console.WriteLine("Distance(meters) - ");
+            //TODO: Плохая практика делать if без дальнейших инструкций
             if (CheckEnterData(1, 100000, out distance));
 
             CheckNaNAndInfinity(distance);
 
             Console.WriteLine("Intensity: 1 - low; 2 - medium; 3 - high ");
             int checkStyle;
+            //TODO: Плохая практика делать if без дальнейших инструкций
             if (CheckEnterData(1, 3, out checkStyle));
 
             CheckNaNAndInfinity(checkStyle);
@@ -119,6 +128,9 @@ namespace Output
             }
         }
 
+        //TODO: Не стоит писать название класса/интерфейса/метода в комментариях, 
+        //TODO: поменяете название класса, а в комментарии забудете и будет рассогласование
+        //TODO: Название метода не отражает его назначения
         /// <summary>
         /// метод реализует ввод и проверку данных пользователя,
         /// если был выбран вид спорта как "Swimming"
@@ -130,13 +142,14 @@ namespace Output
             style = 0;
             Console.WriteLine("Enter your data");
             Console.WriteLine("Distance(meters) - ");
-
+            //TODO: Плохая практика делать if без дальнейших инструкций
             if (CheckEnterData(1, 100000, out distance));
 
             CheckNaNAndInfinity(distance);
 
             Console.WriteLine("Style: 1 - free; 2 - сrawl; 3 - butterfly ");
             int checkStyle;
+            //TODO: Плохая практика делать if без дальнейших инструкций
             if (CheckEnterData(1, 3, out checkStyle));
 
             CheckNaNAndInfinity(checkStyle);
@@ -164,6 +177,9 @@ namespace Output
             }
         }
 
+        //TODO: Не стоит писать название класса/интерфейса/метода в комментариях, 
+        //TODO: поменяете название класса, а в комментарии забудете и будет рассогласование
+        //TODO: Название метода не отражает его назначения
         /// <summary>
         /// метод реализует ввод и проверку данных пользователя,
         /// если был выбран вид спорта как "Press"
@@ -176,16 +192,19 @@ namespace Output
             Console.WriteLine("Enter your data");
 
             Console.WriteLine("Weight(kilogram) - ");
+            //TODO: Плохая практика делать if без дальнейших инструкций
             if (CheckEnterData(1, 500, out weight));
 
             CheckNaNAndInfinity(weight);
 
             Console.WriteLine("Number of repetitions - ");
+            //TODO: Плохая практика делать if без дальнейших инструкций
             if (CheckEnterData(1, 100, out repetitions));
 
             CheckNaNAndInfinity(repetitions);
 
             Console.WriteLine("Number of sets - ");
+            //TODO: Плохая практика делать if без дальнейших инструкций
             if (CheckEnterData(1, 20, out sets));
 
             CheckNaNAndInfinity(sets);
@@ -246,6 +265,8 @@ namespace Output
         /// <param name="checkNumb"> проверяемая переменная </param>
         public static void CheckNaNAndInfinity(double checkNumb)
         {
+            //TODO: Такая проверка должна быть как можно ближе к смысловой части вашей предметной области
+            // оставив её тут вы рискуете забыть добавить её при изменении консольного ввода/вывода на другой
             if (double.IsNaN(checkNumb) || double.IsInfinity(checkNumb))
             {
                 throw new InvalidOperationException("Error. NaN or Infinity");
