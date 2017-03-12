@@ -2,10 +2,7 @@
 
 namespace Library
 {
-    //TODO: Не стоит писать название класса/интерфейса/метода в комментариях, 
-    //TODO: поменяете название класса, а в комментарии забудете и будет рассогласование
     /// <remarks>
-    ///  Класс Running
     ///  класс программы, осуществляющий вычисления
     ///  при выборе пользователем вида спорта такого как "Running"
     /// </remarks>
@@ -15,12 +12,21 @@ namespace Library
         private readonly double _style;
 
         /// <summary>
-        /// Конструктор класса Running
+        /// Конструктор класса
         /// </summary>
         /// <param name="distance"> дистанция забега </param>
         /// <param name="style"> интенсивность бега </param>
         public Running(double distance, double style)
         {
+            if (double.IsNaN(style) || double.IsInfinity(style))
+            {
+                throw new InvalidOperationException("Error. NaN or Infinity");
+            }
+
+            if (double.IsNaN(distance) || double.IsInfinity(distance))
+            {
+                throw new InvalidOperationException("Error. NaN or Infinity");
+            }
             _distance = distance;
             _style = style;
         }
@@ -28,13 +34,16 @@ namespace Library
         /// <summary>
         /// Метод осуществляет расчет данных пользователя
         /// <returns> 
-        /// результат возвращается в виде значения типа double 
+        /// возвращается количество затраченных калорий  
         /// </returns>
         /// </summary>
-        public double GetKkal()
+        public double Kkal
         {
-            var result = _distance * _style * 0.8;
-            return result;
+            get
+            {
+                var result = _distance * _style * 0.8;
+                return result;
+            }
         }
     };
 }

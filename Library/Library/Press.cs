@@ -2,10 +2,7 @@
 
 namespace Library
 {
-    //TODO: Не стоит писать название класса/интерфейса/метода в комментариях, 
-    //TODO: поменяете название класса, а в комментарии забудете и будет рассогласование
     /// <remarks>
-    ///  Класс Press
     ///  класс программы, осуществляющий вычисления
     ///  при выборе пользователем вида спорта такого как "Press"
     /// </remarks>
@@ -16,13 +13,17 @@ namespace Library
         private readonly int _sets;
 
         /// <summary>
-        /// Конструктор класса Press
+        /// Конструктор класса
         /// </summary>
         /// <param name="weight"> вес </param>
         /// <param name="repetitions"> количество повторений </param>
         /// <param name="sets"> количество подходов </param>
         public Press(double weight, int repetitions, int sets)
         {
+            if (double.IsNaN(weight) || double.IsInfinity(weight))
+            {
+                throw new InvalidOperationException("Error. NaN or Infinity");
+            }
             _weight = weight;
             _repetitions = repetitions;
             _sets = sets;
@@ -31,13 +32,16 @@ namespace Library
         /// <summary>
         /// Метод осуществляет расчет данных пользователя
         /// <returns> 
-        /// результат возвращается в виде значения типа double 
+        /// возвращается количество затраченных калорий   
         /// </returns>
         /// </summary>
-        public double GetKkal()
+        public double Kkal
         {
-            var result = ((_weight * _repetitions) * 0.2) * _sets;
-            return result;
+            get
+            {
+                var result = ((_weight * _repetitions) * 0.2) * _sets;
+                return result;
+            }
         }
     };
 }
