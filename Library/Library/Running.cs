@@ -17,7 +17,7 @@ namespace Library
         /// <param name="distance"> дистанция забега </param>
         /// <param name="style"> интенсивность бега </param>
         public Running(double distance, double style)
-        {
+        {//TODO: Дублирование проверки, что не есть хорошо.
             if (double.IsNaN(style) || double.IsInfinity(style))
             {
                 throw new InvalidOperationException("Error. NaN or Infinity");
@@ -31,6 +31,7 @@ namespace Library
             _style = style;
         }
 
+        //TODO: Уже не метод.
         /// <summary>
         /// Метод осуществляет расчет данных пользователя
         /// <returns> 
@@ -40,7 +41,7 @@ namespace Library
         public double Kkal
         {
             get
-            {
+            {//TODO: Можно не создавать локальную переменную - сразу возвращать значение.
                 var result = _distance * _style * 0.8;
                 return result;
             }
