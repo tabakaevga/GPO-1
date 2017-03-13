@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CheckDouble.cs" />
     <Compile Include="IPractice.cs" />
     <Compile Include="Press.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

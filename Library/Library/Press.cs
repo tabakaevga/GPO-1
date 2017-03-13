@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Library
+﻿namespace Library
 {
     /// <remarks>
     ///  класс программы, осуществляющий вычисления
@@ -19,30 +17,24 @@ namespace Library
         /// <param name="repetitions"> количество повторений </param>
         /// <param name="sets"> количество подходов </param>
         public Press(double weight, int repetitions, int sets)
-        {//TODO: Дублирование проверки, что не есть хорошо.
-            if (double.IsNaN(weight) || double.IsInfinity(weight))
-            {
-                throw new InvalidOperationException("Error. NaN or Infinity");
-            }
+        {
+            CheckDouble.DoubleCheck(weight);
+
             _weight = weight;
             _repetitions = repetitions;
             _sets = sets;
         }
 
-        //TODO: Уже не метод.
         /// <summary>
-        /// Метод осуществляет расчет данных пользователя
-        /// <returns> 
-        /// возвращается количество затраченных калорий   
-        /// </returns>
+        /// Свойство осуществляет расчет данных пользователя
+        /// и возвращает количество затраченных калорий
         /// </summary>
         public double Kkal
         {
             get
             {
                 //TODO: Можно не создавать локальную переменную - сразу возвращать значение.
-                var result = ((_weight * _repetitions) * 0.2) * _sets;
-                return result;
+                return _weight * _repetitions * 0.2 * _sets;
             }
         }
     };
