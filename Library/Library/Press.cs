@@ -18,6 +18,7 @@
         /// <param name="sets"> количество подходов </param>
         public Press(double weight, int repetitions, int sets)
         {
+            //TODO: То есть отрицательные или 0 int могут быть?
             CheckDouble.DoubleCheck(weight);
 
             _weight = weight;
